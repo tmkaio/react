@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                bat 'set'
+                bat 'newman run C:\Users\thomas.kaio\Desktop\Automated_tests\pst.json -r junit --reporter-junit-export C:\Users\thomas.kaio\Desktop\Automated_tests\result.xml'
             }
         }
     }
