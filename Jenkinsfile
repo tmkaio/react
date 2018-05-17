@@ -9,7 +9,7 @@ pipeline {
     }
     post {
         always {
-            junit 'C:/Users/thomas.kaio/Desktop/Automated_tests/result.xml'
+            junit 'C:\Users\thomas.kaio\Desktop\Automated_tests\result.xml'
         }
     }
 }
