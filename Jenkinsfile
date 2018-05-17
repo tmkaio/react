@@ -3,13 +3,13 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                bat 'newman run C:/Users/thomas.kaio/Desktop/Automated_tests/pst.json -r junit --reporter-junit-export abacatao.xml'
+                bat 'newman run C:/Users/thomas.kaio/Desktop/Automated_tests/pst.json -r junit --reporter-junit-export results.xml'
             }
         }
     }
     post {
         always {
-            junit 'abacatao.xml'
+            junit 'results.xml'
         }
     }
 }
