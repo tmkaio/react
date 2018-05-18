@@ -1,10 +1,7 @@
 node {
-   stage 'Build Application'
-   // do what you need to do to build your application
-   echo 'Compilation is done'
-   stage 'Deploy Application'
-   // do what you need to do to deploy your application
-   echo 'Deploy is done'
    stage 'Execute JMeter Performance Tests'
-   build job: 'JMeter - Freestyle'
+   build job: 'JMeter - Freestyle', parameters: [[$class: 'StringParameterValue', name: 'VirtualUsers', value: '100']]
+   stage 'Run JMeter Test'
+   bat 'C:/Users/thomas.kaio/Desktop/apache-jmeter-4.0/apache-jmeter-4.0/bin/jmeter.bat -n -t "HTTP Request.jmx" -l test.jtl'
+   step([$class: 'ArtifactArchiver', artifacts: 'test.jtl'])
 }
