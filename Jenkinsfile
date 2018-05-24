@@ -3,13 +3,13 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                bat 'node_modules/.bin/cucumber-js --format=json | node_modules/.bin/cucumber-junit'
+                bat 'node_modules/.bin/cucumber-js --format=json'
             }
         }
     }
     post {
         always {
-            junit 'res.xml'
+            cucumber 'res.json'
         }
     }
 }
