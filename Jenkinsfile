@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                bat 'node_modules/.bin/cucumber-js'
+                bat 'node_modules/.bin/cucumber-js --format=json | node_modules/.bin/cucumber-junit > res.xml'
             }
         }
     }
