@@ -1,15 +1,15 @@
 pipeline {
     agent any
-    environment {
-        JMETER_HOME="C:/Users/thomas.kaio/Desktop/apache-jmeter-4.0/apache-jmeter-4.0"
-    }
-    stages {
-        stage('build') {
-            steps {
-                echo "$JMETER_HOME"
-                bat 'C:/Users/thomas.kaio/Desktop/apache-jmeter-4.0/apache-jmeter-4.0/bin/jmeter -n -t "C:/Users/thomas.kaio/Desktop/apache-jmeter-4.0/apache-jmeter-4.0/bin/HTTP Request.jmx" -l resulting.jtl'
-                step([$class: 'ArtifactArchiver', artifacts: '**/*.jtl'])
-            }
-        }
-    }
+        stages {
+         stage('build') {
+             steps {
+                bat 'C:/Users/thomas.kaio/Desktop/Automated_tests/hellocucumber/node_modules/.bin/cucumber-js --format=json | C:/Users/thomas.kaio/Desktop/Automated_tests/hellocucumber/node_modules\.bin\cucumber-junit > res.xml'
+             }
+         }
+     }
+     post {
+         always {
+            junit 'res.xml'
+         }
+     }
 }
